@@ -1,0 +1,8 @@
+node_modules
+dist
+# Full-size originals stay local (back them up elsewhere). The web-sized
+# WebP files generated from them in public/art/ are committed instead.
+/art/
+
+# Local env (API keys)
+*.local

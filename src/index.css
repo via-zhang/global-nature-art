@@ -1,0 +1,191 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Background behind drawings; transparent images show through to it. */
+:root {
+  --card-bg: #fbfaf6;
+  --card-border: #ffffff;
+}
+
+.dark {
+  --card-bg: #1b232b;
+  --card-border: #2c3742;
+}
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Fraunces', ui-serif, Georgia, serif;
+
+  --color-paper: #fbfaf6;
+  --color-ink: #1d2a24;
+  --color-moss: #3f6b4f;
+  --color-moss-light: #8fbf9a;
+  --color-accent: #d9502b;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-[#e8eee9] font-sans text-ink antialiased dark:bg-[#0a0f14] dark:text-stone-100;
+}
+
+/* ---- Map markers (plain DOM, managed by MapLibre) ---- */
+
+/* No `position` here: MapLibre's .maplibregl-marker sets position: absolute and
+   places the marker with a transform. Overriding it puts markers back in normal
+   flow, offsetting each by the ones before it. Absolute also anchors .art-thumb. */
+.art-marker {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.art-marker .art-dot {
+  position: absolute;
+  inset: 2px;
+  border-radius: 9999px;
+  background: var(--color-accent);
+  border: 2.5px solid #fff;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.35);
+  transition: transform 150ms ease;
+}
+
+.art-marker:hover .art-dot,
+.art-marker:focus-visible .art-dot,
+.art-marker.is-selected .art-dot {
+  transform: scale(1.25);
+}
+
+.art-marker.is-selected .art-dot::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border-radius: 9999px;
+  border: 2px solid var(--color-accent);
+  animation: art-pulse 1.8s ease-out infinite;
+}
+
+@keyframes art-pulse {
+  from {
+    opacity: 0.9;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+.art-marker:focus-visible {
+  outline: none;
+}
+
+.art-marker:focus-visible .art-dot {
+  outline: 3px solid var(--color-moss-light);
+  outline-offset: 2px;
+}
+
+/* Thumbnail floating above the point; shown only when there's room. */
+.art-marker .art-thumb {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  width: 76px;
+  height: 76px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 3px solid var(--card-border);
+  box-shadow: 0 6px 16px rgb(0 0 0 / 0.28);
+  opacity: 0;
+  transform: translate(-50%, 6px) scale(0.9);
+  transform-origin: bottom center;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+  pointer-events: none;
+}
+
+.art-marker .art-thumb::after {
+  /* little stem connecting the card to the point */
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -9px;
+  width: 10px;
+  height: 10px;
+  background: var(--card-border);
+  transform: translateX(-50%) rotate(45deg);
+  z-index: -1;
+}
+
+.art-marker .art-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 9px;
+}
+
+.art-marker.show-thumb .art-thumb {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+  pointer-events: auto;
+}
+
+.art-marker.show-thumb:hover .art-thumb {
+  transform: translate(-50%, -2px) scale(1.05);
+}
+
+.art-marker.is-hidden {
+  visibility: hidden;
+}
+
+.dark .art-marker .art-dot {
+  border-color: #e7e5df;
+}
+
+/* ---- MapLibre control tweaks ---- */
+
+.maplibregl-ctrl-attrib {
+  font-size: 11px;
+}
+
+.dark .maplibregl-ctrl-attrib,
+.dark .maplibregl-ctrl-attrib.maplibregl-compact {
+  background: rgb(20 26 32 / 0.85);
+  color: #cbd5d1;
+}
+
+.dark .maplibregl-ctrl-attrib a {
+  color: #e7e5df;
+}
+
+.dark .maplibregl-ctrl-attrib-button {
+  filter: invert(1);
+}
+
+.dark .maplibregl-ctrl-group {
+  background: #1b232b;
+}
+
+.dark .maplibregl-ctrl-group button + button {
+  border-top-color: #2c3640;
+}
+
+.dark .maplibregl-ctrl-icon {
+  filter: invert(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art-marker .art-dot::after {
+    animation: none;
+  }
+}
