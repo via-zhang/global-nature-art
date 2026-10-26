@@ -125,6 +125,12 @@ export default function DetailPanel({ art, index, total, onClose, onPrev, onNext
                 <dt className="text-stone-500 dark:text-stone-400">Reference photo (iNaturalist)</dt>
                 <dd className="text-right font-medium">{art.credit}</dd>
               </div>
+              {art.observedOn && (
+                <div className="flex justify-between gap-4">
+                  <dt className="text-stone-500 dark:text-stone-400">Observed</dt>
+                  <dd className="text-right font-medium">{art.observedOn}</dd>
+                </div>
+              )}
               <div className="flex justify-between gap-4">
                 <dt className="text-stone-500 dark:text-stone-400">Location</dt>
                 <dd className="text-right font-medium tabular-nums">{formatCoords(art.lat, art.lng)}</dd>

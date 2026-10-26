@@ -1,6 +1,7 @@
 // One entry per drawing. `id` must match the file names in art/:
 //   art/<id>.png         colored drawing
 //   art/<id>_sketch.png  sketch (optional)
+// `observedOn` is the iNaturalist observation date, shown as written.
 // `conservationStatus` is optional: one of the IUCN Red List codes below.
 // `conservationUrl` (optional) links the status tag to the species' Red List page.
 // Shown in alphabetical order by common name.
@@ -13,6 +14,7 @@ export const artworks = [
     lng: -117.2437305556,
     credit: '© John Bruin',
     observationUrl: 'https://www.inaturalist.org/observations/410573080',
+    observedOn: 'Oct 12, 2026 · 8:49 AM PDT',
     hasSketch: true,
   },
   {
@@ -23,6 +25,7 @@ export const artworks = [
     lng: 31.7779551,
     credit: '© Greg Lasley',
     observationUrl: 'https://www.inaturalist.org/observations/167560',
+    observedOn: 'Jan 14, 2006',
     hasSketch: true,
   },
   {
@@ -33,6 +36,7 @@ export const artworks = [
     lng: -73.6863888883,
     credit: '© Nabil Zariffa',
     observationUrl: 'https://www.inaturalist.org/observations/410569832',
+    observedOn: 'Oct 23, 2026 · 1:29 PM EDT',
     hasSketch: true,
   },
   {
@@ -43,6 +47,7 @@ export const artworks = [
     lng: -41.0654825376,
     credit: '© Gabriel Bonfa',
     observationUrl: 'https://www.inaturalist.org/observations/143115740',
+    observedOn: 'November 2022',
     hasSketch: true,
     conservationStatus: 'CR',
     conservationUrl: 'https://www.iucnredlist.org/species/22722293/130617765',
@@ -55,6 +60,7 @@ export const artworks = [
     lng: 99.6428146512,
     credit: '© Jono Dashper',
     observationUrl: 'https://www.inaturalist.org/observations/153788800',
+    observedOn: 'September 2019',
     hasSketch: true,
     conservationStatus: 'VU',
     conservationUrl: 'https://www.iucnredlist.org/species/22682453/184603863',
@@ -67,6 +73,7 @@ export const artworks = [
     lng: -47.0880679946,
     credit: '© Luciano Bernardes',
     observationUrl: 'https://www.inaturalist.org/observations/124152728',
+    observedOn: 'June 2016',
     hasSketch: true,
     conservationStatus: 'NT',
     conservationUrl: 'https://www.iucnredlist.org/species/22726233/221624536',
@@ -79,6 +86,7 @@ export const artworks = [
     lng: 146.6616756321,
     credit: '© Philip Dubbin',
     observationUrl: 'https://www.inaturalist.org/observations/35401668',
+    observedOn: 'Aug 23, 2019 · 11:26 AM AEST',
     hasSketch: true,
     conservationStatus: 'CR',
     conservationUrl: 'https://www.iucnredlist.org/species/22704415/130992272',
@@ -91,6 +99,7 @@ export const artworks = [
     lng: -64.6773598812,
     credit: '© David J Barton',
     observationUrl: 'https://www.inaturalist.org/observations/408762570',
+    observedOn: 'September 2026',
     hasSketch: true,
     conservationStatus: 'CR',
     conservationUrl: 'https://www.iucnredlist.org/species/22685542/196624397',
