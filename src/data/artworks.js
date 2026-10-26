@@ -3,6 +3,7 @@
 //   art/<id>_sketch.png  sketch (optional)
 // `conservationStatus` is optional: one of the IUCN Red List codes below.
 // `conservationUrl` (optional) links the status tag to the species' Red List page.
+// Shown in alphabetical order by common name.
 export const artworks = [
   {
     id: 'vermilion_flycatcher',
@@ -94,7 +95,7 @@ export const artworks = [
     conservationStatus: 'CR',
     conservationUrl: 'https://www.iucnredlist.org/species/22685542/196624397',
   },
-]
+].sort((a, b) => a.name.localeCompare(b.name))
 
 // IUCN Red List categories, using the Red List's own color scheme.
 export const CONSERVATION_STATUS = {
