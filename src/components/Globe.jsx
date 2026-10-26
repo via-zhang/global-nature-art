@@ -104,19 +104,19 @@ const Globe = forwardRef(function Globe({ artworks, theme, selectedId, onSelect 
   onSelectRef.current = onSelect
 
   useImperativeHandle(ref, () => ({
-    flyTo(art, padding) {
+    // Only move the camera when the artwork is out of view (on the far side
+    // of the globe or off-screen); then rotate to it without changing zoom.
+    showIfHidden(art) {
       const map = mapRef.current
       if (!map) return
-      map.flyTo({
-        center: [art.lng, art.lat],
-        zoom: Math.max(map.getZoom(), 3.5),
-        padding,
-        duration: 1600,
-        essential: true,
-      })
+      const { width, height } = map.getContainer().getBoundingClientRect()
+      const p = map.project([art.lng, art.lat])
+      const onScreen = p.x >= 0 && p.x <= width && p.y >= 0 && p.y <= height
+      if (onScreen && angularDistance(map.getCenter(), art) < 80) return
+      map.easeTo({ center: [art.lng, art.lat], duration: 1200, essential: true })
     },
     resetView() {
-      mapRef.current?.flyTo({ center: centerOf(artworks), zoom: initialZoom(), padding: 0, duration: 1400 })
+      mapRef.current?.flyTo({ center: centerOf(artworks), zoom: initialZoom(), duration: 1400 })
     },
   }))
 

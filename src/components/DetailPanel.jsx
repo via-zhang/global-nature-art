@@ -116,7 +116,9 @@ export default function DetailPanel({ art, index, total, onClose, onPrev, onNext
 
             <h2 className="mt-5 font-display text-3xl leading-tight font-semibold">{art.name}</h2>
             <p className="mt-1 text-lg text-stone-600 italic dark:text-stone-300">{art.scientificName}</p>
-            {art.conservationStatus && <ConservationTag status={art.conservationStatus} className="mt-3" />}
+            {art.conservationStatus && (
+              <ConservationTag status={art.conservationStatus} href={art.conservationUrl} className="mt-3" />
+            )}
 
             <dl className="mt-5 space-y-3 border-t border-stone-200 pt-4 text-sm dark:border-white/10">
               <div className="flex justify-between gap-4">

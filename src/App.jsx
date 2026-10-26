@@ -26,15 +26,6 @@ const idFromHash = () => {
   return artworks.some((a) => a.id === id) ? id : null
 }
 
-// Keep the selected point clear of the detail panel when flying to it.
-function panelPadding() {
-  const w = window.innerWidth
-  const h = window.innerHeight
-  return w >= 640
-    ? { right: 420, top: 0, bottom: 0, left: 0 }
-    : { bottom: Math.round(h * 0.72), top: 0, left: 0, right: 0 }
-}
-
 export default function App() {
   const [theme, toggleTheme] = useTheme()
   const [selectedId, setSelectedId] = useState(idFromHash)
@@ -49,10 +40,11 @@ export default function App() {
     if (window.innerWidth < 640) setListOpen(false)
   }, [])
 
-  // Fly to the selection (also on first load when opened via a #link).
+  // Bring the selection into view if it's hidden (also on first load when
+  // opened via a #link). Visible points don't move the globe.
   useEffect(() => {
     if (!selected) return
-    const t = setTimeout(() => globeRef.current?.flyTo(selected, panelPadding()), 50)
+    const t = setTimeout(() => globeRef.current?.showIfHidden(selected), 50)
     return () => clearTimeout(t)
   }, [selected])
 
@@ -88,7 +80,7 @@ export default function App() {
       {/* Top bar: title + gallery list on the left, controls on the right */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-3 p-3 sm:p-4">
         <section
-          className={`pointer-events-auto w-full max-w-xs rounded-2xl bg-paper/90 shadow-lg ring-1 ring-black/5 backdrop-blur-md transition-opacity dark:bg-[#151c22]/90 dark:ring-white/10 ${
+          className={`pointer-events-auto flex max-h-[calc(100dvh-1.5rem)] w-full max-w-xs min-w-0 flex-col rounded-2xl sm:max-h-[calc(100dvh-2rem)] bg-paper/90 shadow-lg ring-1 ring-black/5 backdrop-blur-md transition-opacity dark:bg-[#151c22]/90 dark:ring-white/10 ${
             selected ? 'max-sm:opacity-0 max-sm:pointer-events-none' : ''
           }`}
         >
@@ -97,9 +89,9 @@ export default function App() {
             onClick={() => setListOpen((o) => !o)}
             aria-expanded={listOpen}
             aria-controls="artwork-list"
-            className="flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-3 text-left focus-visible:outline-2 focus-visible:outline-moss"
+            className="flex w-full shrink-0 items-center justify-between gap-3 rounded-2xl px-4 py-3 text-left focus-visible:outline-2 focus-visible:outline-moss"
           >
-            <span>
+            <span className="min-w-0">
               <span className="block font-display text-xl leading-tight font-semibold">Global Nature Art</span>
               <span className="block text-xs text-stone-600 dark:text-stone-400">
                 {artworks.length} drawings from iNaturalist observations
@@ -121,7 +113,7 @@ export default function App() {
           {listOpen && (
             <ul
               id="artwork-list"
-              className="max-h-[50dvh] overflow-y-auto border-t border-stone-200 p-2 dark:border-white/10"
+              className="min-h-0 flex-1 overflow-y-auto border-t border-stone-200 p-2 dark:border-white/10"
             >
               {artworks.map((art) => (
                 <li key={art.id}>
@@ -157,7 +149,7 @@ export default function App() {
         </section>
 
         <div
-          className={`pointer-events-auto flex gap-2 ${selected ? 'sm:mr-[416px]' : ''} transition-[margin] duration-300`}
+          className={`pointer-events-auto flex shrink-0 gap-2 ${selected ? 'sm:mr-[416px]' : ''} transition-[margin] duration-300`}
         >
           <ControlButton label="Reset view" onClick={() => globeRef.current?.resetView()}>
             <circle cx="12" cy="12" r="9" />

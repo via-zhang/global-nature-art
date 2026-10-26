@@ -2,6 +2,7 @@
 //   art/<id>.png         colored drawing
 //   art/<id>_sketch.png  sketch (optional)
 // `conservationStatus` is optional: one of the IUCN Red List codes below.
+// `conservationUrl` (optional) links the status tag to the species' Red List page.
 export const artworks = [
   {
     id: 'vermilion_flycatcher',
@@ -43,6 +44,7 @@ export const artworks = [
     observationUrl: 'https://www.inaturalist.org/observations/143115740',
     hasSketch: true,
     conservationStatus: 'CR',
+    conservationUrl: 'https://www.iucnredlist.org/species/22722293/130617765',
   },
   {
     id: 'great_hornbill',
@@ -54,6 +56,7 @@ export const artworks = [
     observationUrl: 'https://www.inaturalist.org/observations/153788800',
     hasSketch: true,
     conservationStatus: 'VU',
+    conservationUrl: 'https://www.iucnredlist.org/species/22682453/184603863',
   },
   {
     id: 'ariel_toucan',
@@ -64,7 +67,32 @@ export const artworks = [
     credit: '© Luciano Bernardes',
     observationUrl: 'https://www.inaturalist.org/observations/124152728',
     hasSketch: true,
-    conservationStatus: 'EN',
+    conservationStatus: 'NT',
+    conservationUrl: 'https://www.iucnredlist.org/species/22726233/221624536',
+  },
+  {
+    id: 'regent_honeyeater',
+    name: 'Regent Honeyeater',
+    scientificName: 'Anthochaera phrygia',
+    lat: -36.1367589599,
+    lng: 146.6616756321,
+    credit: '© Philip Dubbin',
+    observationUrl: 'https://www.inaturalist.org/observations/35401668',
+    hasSketch: true,
+    conservationStatus: 'CR',
+    conservationUrl: 'https://www.iucnredlist.org/species/22704415/130992272',
+  },
+  {
+    id: 'blue_macaw',
+    name: 'Blue-throated Macaw',
+    scientificName: 'Ara glaucogularis',
+    lat: -15.1515736225,
+    lng: -64.6773598812,
+    credit: '© David J Barton',
+    observationUrl: 'https://www.inaturalist.org/observations/408762570',
+    hasSketch: true,
+    conservationStatus: 'CR',
+    conservationUrl: 'https://www.iucnredlist.org/species/22685542/196624397',
   },
 ]
 
