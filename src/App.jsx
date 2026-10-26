@@ -92,7 +92,7 @@ export default function App() {
             className="flex w-full shrink-0 items-center justify-between gap-3 rounded-2xl px-4 py-3 text-left focus-visible:outline-2 focus-visible:outline-moss"
           >
             <span className="min-w-0">
-              <span className="block font-display text-xl leading-tight font-semibold">Global Nature Art</span>
+              <span className="block font-display text-xl leading-tight font-semibold">Bird Art Atlas</span>
               <span className="block text-xs text-stone-600 dark:text-stone-400">
                 {artworks.length} drawings from iNaturalist observations
               </span>

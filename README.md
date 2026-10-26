@@ -1,4 +1,4 @@
-# Global Nature Art
+# Bird Art Atlas
 
 Drawings of wildlife from iNaturalist observations, placed on an interactive 3D globe.
 
