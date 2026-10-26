@@ -127,7 +127,7 @@ export default function DetailPanel({ art, index, total, onClose, onPrev, onNext
               </div>
               {art.observedOn && (
                 <div className="flex justify-between gap-4">
-                  <dt className="text-stone-500 dark:text-stone-400">Observed</dt>
+                  <dt className="text-stone-500 dark:text-stone-400">Date observed</dt>
                   <dd className="text-right font-medium">{art.observedOn}</dd>
                 </div>
               )}
