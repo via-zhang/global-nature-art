@@ -104,6 +104,19 @@ export const artworks = [
     conservationStatus: 'CR',
     conservationUrl: 'https://www.iucnredlist.org/species/22685542/196624397',
   },
+  {
+    id: 'atlantic_puffin',
+    name: 'Atlantic Puffin',
+    scientificName: 'Fratercula arctica',
+    lat: 48.6294877275,
+    lng: -53.0190537402,
+    credit: '© Shirley Jane Rushforth Guinn',
+    observationUrl: 'https://www.inaturalist.org/observations/382020257',
+    observedOn: 'Jul 6, 2026 · 8:39 AM NDT',
+    hasSketch: true,
+    conservationStatus: 'VU',
+    conservationUrl: 'https://www.iucnredlist.org/species/22694927/132581443',
+  },
 ].sort((a, b) => a.name.localeCompare(b.name))
 
 // IUCN Red List categories, using the Red List's own color scheme.
