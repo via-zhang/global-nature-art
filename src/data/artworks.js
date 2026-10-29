@@ -139,6 +139,17 @@ export const artworks = [
     observedOn: 'Sep 12, 2026',
     hasSketch: true,
   },
+  {
+    id: 'european_starling',
+    name: 'European Starling',
+    scientificName: 'Sturnus vulgaris',
+    lat: 51.5365133333,
+    lng: -0.1573966667,
+    credit: '© Fran Wiesner',
+    observationUrl: 'https://www.inaturalist.org/observations/20842209',
+    observedOn: 'May 20, 2016 · 11:52 AM CEST',
+    hasSketch: true,
+  },
 ].sort((a, b) => a.name.localeCompare(b.name))
 
 // IUCN Red List categories, using the Red List's own color scheme.
