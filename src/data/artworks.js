@@ -117,6 +117,28 @@ export const artworks = [
     conservationStatus: 'VU',
     conservationUrl: 'https://www.iucnredlist.org/species/22694927/132581443',
   },
+  {
+    id: 'roseate_spoonbill',
+    name: 'Roseate Spoonbill',
+    scientificName: 'Platalea ajaja',
+    lat: -20.2976178,
+    lng: -40.2957768,
+    credit: '© Instituto Últimos Refúgios',
+    observationUrl: 'https://www.inaturalist.org/observations/9851636',
+    observedOn: 'Jan 25, 2016',
+    hasSketch: true,
+  },
+  {
+    id: 'new_zealand_fantail',
+    name: 'New Zealand Fantail',
+    scientificName: 'Rhipidura fuliginosa',
+    lat: -43.829842993,
+    lng: 173.0493189025,
+    credit: '© J.R. Kuethe',
+    observationUrl: 'https://www.inaturalist.org/observations/409396034',
+    observedOn: 'Sep 12, 2026',
+    hasSketch: true,
+  },
 ].sort((a, b) => a.name.localeCompare(b.name))
 
 // IUCN Red List categories, using the Red List's own color scheme.
