@@ -16,6 +16,7 @@ export const artworks = [
     observationUrl: 'https://www.inaturalist.org/observations/410573080',
     observedOn: 'Oct 12, 2026 · 8:49 AM PDT',
     hasSketch: true,
+    conservationStatus: 'LC',
   },
   {
     id: 'diederik_cuckoo',
@@ -27,6 +28,7 @@ export const artworks = [
     observationUrl: 'https://www.inaturalist.org/observations/167560',
     observedOn: 'Jan 14, 2006',
     hasSketch: true,
+    conservationStatus: 'LC',
   },
   {
     id: 'blue_jay',
@@ -38,6 +40,7 @@ export const artworks = [
     observationUrl: 'https://www.inaturalist.org/observations/410569832',
     observedOn: 'Oct 23, 2026 · 1:29 PM EDT',
     hasSketch: true,
+    conservationStatus: 'LC',
   },
   {
     id: 'cherry_tanager',
@@ -127,6 +130,7 @@ export const artworks = [
     observationUrl: 'https://www.inaturalist.org/observations/9851636',
     observedOn: 'Jan 25, 2016',
     hasSketch: true,
+    conservationStatus: 'LC',
   },
   {
     id: 'new_zealand_fantail',
@@ -138,6 +142,7 @@ export const artworks = [
     observationUrl: 'https://www.inaturalist.org/observations/409396034',
     observedOn: 'Sep 12, 2026',
     hasSketch: true,
+    conservationStatus: 'LC',
   },
   {
     id: 'european_starling',
@@ -149,6 +154,7 @@ export const artworks = [
     observationUrl: 'https://www.inaturalist.org/observations/20842209',
     observedOn: 'May 20, 2016 · 11:52 AM CEST',
     hasSketch: true,
+    conservationStatus: 'LC',
   },
 ].sort((a, b) => a.name.localeCompare(b.name))
 

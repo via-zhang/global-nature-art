@@ -1,68 +1,11 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import { Map as MapLibreMap, Marker, NavigationControl } from 'maplibre-gl'
 import { imageUrl } from '../data/artworks.js'
-
-// OSM's standard raster tiles
-// In dark mode the same tiles are inverted to get a dark basemap.
-const RASTER_PAINT = {
-  light: {
-    'raster-brightness-min': 0,
-    'raster-brightness-max': 1,
-    'raster-hue-rotate': 0,
-    'raster-saturation': 0,
-    'raster-contrast': 0,
-  },
-  dark: {
-    'raster-brightness-min': 1,
-    'raster-brightness-max': 0.08,
-    'raster-hue-rotate': 180,
-    'raster-saturation': -0.35,
-    'raster-contrast': 0.1,
-  },
-}
-
-const SKY = {
-  light: {
-    'sky-color': '#bcd9ea',
-    'horizon-color': '#ffffff',
-    'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 1, 5, 1, 7, 0],
-  },
-  dark: {
-    'sky-color': '#0d1b2a',
-    'horizon-color': '#1f3b52',
-    'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 1, 5, 1, 7, 0],
-  },
-}
+import { buildStyle } from '../map/osmStyle.js'
 
 const THUMB_SIZE = 76 + 6 // card + border
 const THUMB_GAP = 8
 const DOT_SIZE = 18
-
-function buildStyle(theme) {
-  return {
-    version: 8,
-    projection: { type: 'globe' },
-    sky: SKY[theme],
-    sources: {
-      osm: {
-        type: 'raster',
-        tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
-        tileSize: 256,
-        maxzoom: 19,
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
-      },
-    },
-    layers: [
-      {
-        id: 'background',
-        type: 'background',
-        paint: { 'background-color': theme === 'dark' ? '#0f1a24' : '#aad3df' },
-      },
-      { id: 'osm', type: 'raster', source: 'osm', paint: RASTER_PAINT[theme] },
-    ],
-  }
-}
 
 // Great-circle angle (degrees) between two points.
 function angularDistance(a, b) {
