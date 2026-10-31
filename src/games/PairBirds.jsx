@@ -13,10 +13,44 @@ const FLIP_BACK_MS = 900
 // Remembered for "New game" / "Play again" within this visit.
 let lastLevel = 'normal'
 
+const MAX_ADJACENT_PAIRS = 1
+
+// How many pairs have their two cards side by side or one above the other.
+function adjacentPairs(layout, cols) {
+  let count = 0
+  layout.forEach((art, i) => {
+    const right = i % cols < cols - 1 ? layout[i + 1] : null
+    const below = layout[i + cols]
+    if (right?.id === art.id) count++
+    if (below?.id === art.id) count++
+  })
+  return count
+}
+
+// Cells that share an edge are always opposite colors on a checkerboard, so
+// putting both copies of each bird on the same color means no pair can touch.
+// (Each color holds an even number of cells because every level has 4 columns.)
+function checkerboardLayout(birds, cols) {
+  const cells = [...Array(birds.length * 2).keys()]
+  const dark = cells.filter((i) => ((i % cols) + Math.floor(i / cols)) % 2 === 0)
+  const light = cells.filter((i) => ((i % cols) + Math.floor(i / cols)) % 2 === 1)
+  const mixed = shuffle(birds)
+  const layout = []
+  const place = (group, spots) => shuffle([...group, ...group]).forEach((art, k) => (layout[spots[k]] = art))
+  place(mixed.slice(0, dark.length / 2), dark)
+  place(mixed.slice(dark.length / 2), light)
+  return layout
+}
+
 function deal(level) {
   const { cols, rows } = LEVELS[level]
   const birds = draw('pair', artworks, (cols * rows) / 2)
-  return shuffle([...birds, ...birds]).map((art, i) => ({ key: i, art }))
+  // A plain shuffle passes about half the time, so try two; if both fail, use
+  // the checkerboard layout.
+  let layout = shuffle([...birds, ...birds])
+  if (adjacentPairs(layout, cols) > MAX_ADJACENT_PAIRS) layout = shuffle([...birds, ...birds])
+  if (adjacentPairs(layout, cols) > MAX_ADJACENT_PAIRS) layout = checkerboardLayout(birds, cols)
+  return layout.map((art, i) => ({ key: i, art }))
 }
 
 const canPlay = (level) => artworks.length >= (LEVELS[level].cols * LEVELS[level].rows) / 2
