@@ -116,6 +116,9 @@ export default function DetailPanel({ art, index, total, onClose, onPrev, onNext
 
             <h2 className="mt-5 font-display text-3xl leading-tight font-semibold">{art.name}</h2>
             <p className="mt-1 text-lg text-stone-600 italic dark:text-stone-300">{art.scientificName}</p>
+            {art.altNames?.length > 0 && (
+              <p className="mt-1 text-sm text-stone-600 dark:text-stone-400">Also known as {art.altNames.join(', ')}</p>
+            )}
             {art.conservationStatus && (
               <ConservationTag status={art.conservationStatus} href={art.conservationUrl} className="mt-3" />
             )}

@@ -4,6 +4,7 @@
 // `observedOn` is the iNaturalist observation date, shown as written.
 // `conservationStatus` is optional: one of the IUCN Red List codes below.
 // `conservationUrl` (optional) links the status tag to the species' Red List page.
+// `altNames` (optional) lists other common names, shown as "Also known as …".
 // Shown in alphabetical order by common name.
 export const artworks = [
   {
@@ -155,6 +156,72 @@ export const artworks = [
     observedOn: 'May 20, 2016 · 11:52 AM CEST',
     hasSketch: true,
     conservationStatus: 'LC',
+  },
+  {
+    id: 'florida_scrub_jay',
+    name: 'Florida Scrub-Jay',
+    scientificName: 'Aphelocoma coerulescens',
+    lat: 26.8726862832,
+    lng: -82.2503801331,
+    credit: '© James Rogers',
+    observationUrl: 'https://www.inaturalist.org/observations/409244708',
+    observedOn: 'Oct 18, 2026 · 8:43 AM EDT',
+    hasSketch: true,
+    conservationStatus: 'VU',
+    conservationUrl: 'https://www.iucnredlist.org/species/22705629/179678639',
+  },
+  {
+    id: 'philippine_eagle',
+    name: 'Philippine Eagle',
+    scientificName: 'Pithecophaga jefferyi',
+    lat: 7.0563709555,
+    lng: 125.4092628149,
+    credit: '© Japheth Richa',
+    observationUrl: 'https://www.inaturalist.org/observations/408936922',
+    observedOn: 'September 2026',
+    hasSketch: true,
+    conservationStatus: 'CR',
+    conservationUrl: 'https://www.iucnredlist.org/species/22696012/273773083',
+  },
+  {
+    id: 'lessons_motmot',
+    name: "Lesson's Motmot",
+    altNames: ['Blue-diademed Motmot'],
+    scientificName: 'Momotus lessonii',
+    lat: 17.4445996239,
+    lng: -92.7704441592,
+    credit: '© Luis Antonio Cuervo Alba',
+    observationUrl: 'https://www.inaturalist.org/observations/406485361',
+    observedOn: 'Oct 4, 2026 · 10:44 AM CDT',
+    hasSketch: true,
+    conservationStatus: 'LC',
+    conservationUrl: 'https://www.iucnredlist.org/species/61634649/163627947'
+  },
+  {
+    id: 'baltimore_oriole',
+    name: 'Baltimore Oriole',
+    scientificName: 'Icterus galbula',
+    lat: 42.2656784,
+    lng: -83.0785739,
+    credit: '© Tom Preney',
+    observationUrl: 'https://www.inaturalist.org/observations/6679944',
+    observedOn: 'May 9, 2015 · 10:40 AM EDT',
+    hasSketch: true,
+    conservationStatus: 'LC',
+    conservationUrl: 'https://www.iucnredlist.org/species/22724126/132026652',
+  },
+  {
+    id: 'scaly_sided_merganser',
+    name: 'Scaly-sided Merganser',
+    scientificName: 'Mergus squamatus',
+    lat: 30.0633334634,
+    lng: 120.0634758108,
+    credit: '© xunjie_xi',
+    observationUrl: 'https://www.inaturalist.org/observations/364230833',
+    observedOn: 'March 2026',
+    hasSketch: true,
+    conservationStatus: 'EN',
+    conservationUrl: 'https://www.iucnredlist.org/species/22680488/244637355',
   },
 ].sort((a, b) => a.name.localeCompare(b.name))
 

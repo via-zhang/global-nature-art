@@ -236,6 +236,9 @@ function Round({ art, number, total, score, onDone }) {
               </p>
               <h2 className="font-display text-3xl font-semibold">{art.name}</h2>
               <p className="text-lg text-stone-600 italic dark:text-stone-300">{art.scientificName}</p>
+              {art.altNames?.length > 0 && (
+                <p className="text-sm text-stone-600 dark:text-stone-400">Also known as {art.altNames.join(', ')}</p>
+              )}
             </div>
 
             <div
@@ -315,9 +318,12 @@ function BirdSearch({ exclude, onPick }) {
   const listRef = useRef(null)
 
   const q = query.trim().toLowerCase()
+  // Alternative names count too, so "Blue-diademed Motmot" finds Lesson's Motmot.
+  const matchedAlt = (a) => (q ? a.altNames?.find((n) => n.toLowerCase().includes(q)) : undefined)
   const options = artworks.filter(
     (a) =>
-      !exclude.includes(a.id) && (!q || a.name.toLowerCase().includes(q) || a.scientificName.toLowerCase().includes(q)),
+      !exclude.includes(a.id) &&
+      (!q || a.name.toLowerCase().includes(q) || a.scientificName.toLowerCase().includes(q) || matchedAlt(a)),
   )
 
   useEffect(() => setActive(0), [query])
@@ -399,7 +405,12 @@ function BirdSearch({ exclude, onPick }) {
               onMouseMove={() => setActive(i)}
               className={`cursor-pointer rounded-lg px-3 py-2 ${i === active ? 'bg-moss/10 dark:bg-moss-light/15' : ''}`}
             >
-              <span className="block text-sm font-semibold">{art.name}</span>
+              <span className="block text-sm font-semibold">
+                {art.name}
+                {matchedAlt(art) && (
+                  <span className="font-normal text-stone-500 dark:text-stone-400"> · also {matchedAlt(art)}</span>
+                )}
+              </span>
               <span className="block text-xs text-stone-500 italic dark:text-stone-400">{art.scientificName}</span>
             </li>
           ))}
