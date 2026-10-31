@@ -31,7 +31,9 @@ body,
 }
 
 body {
-  @apply bg-[#e8eee9] font-sans text-ink antialiased dark:bg-[#0a0f14] dark:text-stone-100;
+  /* Text can't be highlighted by accident; the bird panel, game summaries and
+     text inputs opt back in with select-text. */
+  @apply bg-[#e8eee9] font-sans text-ink antialiased select-none dark:bg-[#0a0f14] dark:text-stone-100;
 }
 
 /* ---- Map markers (plain DOM, managed by MapLibre) ---- */
@@ -150,6 +152,42 @@ body {
 
 .dark .art-marker .art-dot {
   border-color: #e7e5df;
+}
+
+/* ---- Scrollbars ----
+   A slim, solid moss-green pill on a transparent track. */
+
+:root {
+  --scrollbar-thumb: #b9c8bc;
+}
+
+.dark {
+  --scrollbar-thumb: #465d52;
+}
+
+.slim-scroll::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.slim-scroll::-webkit-scrollbar-track,
+.slim-scroll::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* The 3px transparent border insets the thumb into a 6px pill. */
+.slim-scroll::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: var(--scrollbar-thumb) padding-box;
+}
+
+/* Firefox only, in the same color. */
+@supports (-moz-appearance: none) {
+  .slim-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+  }
 }
 
 /* ---- MapLibre control tweaks ---- */

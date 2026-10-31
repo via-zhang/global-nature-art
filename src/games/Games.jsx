@@ -69,7 +69,7 @@ export default function Games({ game, theme, onOpen, onClose, onViewBird }) {
         </button>
       </header>
 
-      <div className="min-h-0 flex-1 overflow-y-auto">
+      <div className="slim-scroll min-h-0 flex-1 overflow-y-auto">
         <Game
           key={`${game}-${round}`}
           theme={theme}

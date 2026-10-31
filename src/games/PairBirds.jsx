@@ -81,8 +81,16 @@ export default function PairBirds({ onViewBird, onPlayAgain }) {
   }
 
   const flip = (i) => {
-    if (open.length === 2 || open.includes(i) || matched.has(cards[i].art.id)) return
-    const nextOpen = [...open, i]
+    if (matched.has(cards[i].art.id)) return
+    // Two mismatched cards are still showing: flip them back right away and
+    // start a new turn with this card instead of making the player wait.
+    let current = open
+    if (open.length === 2) {
+      clearTimeout(timer.current)
+      current = []
+    }
+    if (current.includes(i)) return
+    const nextOpen = [...current, i]
     setOpen(nextOpen)
     if (nextOpen.length < 2) {
       setAnnouncement(cards[i].art.name)
@@ -156,7 +164,7 @@ export default function PairBirds({ onViewBird, onPlayAgain }) {
               type="button"
               onClick={() => flip(i)}
               aria-label={isMatched ? `${card.art.name}, matched` : faceUp ? card.art.name : `Card ${i + 1}, face down`}
-              aria-disabled={faceUp}
+              aria-disabled={isMatched || (open.length === 1 && open.includes(i))}
               className="group aspect-square rounded-xl perspective-[800px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-moss"
             >
               <span
@@ -201,7 +209,7 @@ export default function PairBirds({ onViewBird, onPlayAgain }) {
       {done && (
         <section
           aria-label="Results"
-          className="mt-2 rounded-2xl bg-paper p-5 shadow-sm ring-1 ring-black/5 dark:bg-[#151c22] dark:ring-white/10"
+          className="mt-2 rounded-2xl bg-paper p-5 shadow-sm select-text ring-1 ring-black/5 dark:bg-[#151c22] dark:ring-white/10"
         >
           <h2 className="font-display text-2xl font-semibold">
             Solved in {tries} {tries === 1 ? 'try' : 'tries'}!

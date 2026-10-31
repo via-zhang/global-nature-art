@@ -36,7 +36,7 @@ export default function DetailPanel({ art, index, total, onClose, onPrev, onNext
       aria-hidden={!open}
       inert={!open}
       className={[
-        'pointer-events-auto absolute z-20 flex flex-col overflow-hidden bg-paper shadow-2xl transition-all duration-300 ease-out dark:bg-[#151c22]',
+        'pointer-events-auto absolute z-20 flex flex-col overflow-hidden bg-paper shadow-2xl select-text transition-all duration-300 ease-out dark:bg-[#151c22]',
         // Mobile: bottom sheet. Desktop: floating card on the right.
         'inset-x-0 bottom-0 max-h-[78dvh] rounded-t-3xl',
         'sm:inset-x-auto sm:top-4 sm:right-4 sm:bottom-auto sm:max-h-[calc(100dvh-2rem)] sm:w-[400px] sm:rounded-3xl',
@@ -68,20 +68,24 @@ export default function DetailPanel({ art, index, total, onClose, onPrev, onNext
             </div>
           </div>
 
-          <div className="overflow-y-auto px-5 pb-5">
+          <div className="slim-scroll overflow-y-auto px-5 pb-5">
+            {/* The hidden version ignores the pointer, so right-click / long-press
+                "Copy image" gets the version that's showing. */}
             <div className="relative mt-3 overflow-hidden rounded-2xl ring-1 ring-black/5 dark:ring-white/10">
               <img
                 key={`${art.id}-color`}
                 src={imageUrl(art, 'color')}
                 alt={`Colored drawing of a ${art.name}`}
-                className={`mx-auto block aspect-square max-h-[38dvh] w-full object-contain sm:max-h-none transition-opacity duration-300 ${variant === 'color' ? 'opacity-100' : 'opacity-0'}`}
+                aria-hidden={variant !== 'color'}
+                className={`mx-auto block aspect-square max-h-[38dvh] w-full object-contain sm:max-h-none transition-opacity duration-300 ${variant === 'color' ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
               />
               {art.hasSketch && (
                 <img
                   key={`${art.id}-sketch`}
                   src={imageUrl(art, 'sketch')}
                   alt={`Pencil sketch of a ${art.name}`}
-                  className={`absolute inset-0 block h-full w-full object-contain transition-opacity duration-300 ${variant === 'sketch' ? 'opacity-100' : 'opacity-0'}`}
+                  aria-hidden={variant !== 'sketch'}
+                  className={`absolute inset-0 block h-full w-full object-contain transition-opacity duration-300 ${variant === 'sketch' ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
                 />
               )}
             </div>

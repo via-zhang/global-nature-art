@@ -57,7 +57,7 @@ export default function GuessWho({ onViewBird, onPlayAgain }) {
     const birdScore = results.filter((r) => r.birdCorrect).length
     const statusScore = results.filter((r) => r.statusCorrect).length
     return (
-      <div className="mx-auto max-w-xl px-4 py-6">
+      <div className="mx-auto max-w-xl px-4 py-6 select-text">
         <h2 className="font-display text-3xl font-semibold">Game over</h2>
         <p className="mt-2 text-stone-600 dark:text-stone-400">
           You named{' '}
@@ -379,7 +379,7 @@ function BirdSearch({ exclude, onPick }) {
         onClick={() => setOpen(true)}
         onBlur={() => setOpen(false)}
         onKeyDown={onKeyDown}
-        className="w-full rounded-xl bg-paper px-4 py-3 text-base ring-1 ring-black/10 outline-none placeholder:text-stone-400 focus:ring-2 focus:ring-moss dark:bg-[#151c22] dark:ring-white/15 dark:focus:ring-moss-light"
+        className="w-full rounded-xl bg-paper px-4 py-3 text-base select-text ring-1 ring-black/10 outline-none placeholder:text-stone-400 focus:ring-2 focus:ring-moss dark:bg-[#151c22] dark:ring-white/15 dark:focus:ring-moss-light"
       />
       {open && (
         <ul
@@ -387,7 +387,7 @@ function BirdSearch({ exclude, onPick }) {
           id={listId}
           role="listbox"
           aria-label="Birds"
-          className="absolute inset-x-0 top-full z-10 mt-1 max-h-72 overflow-y-auto rounded-xl bg-paper p-1 shadow-lg ring-1 ring-black/10 dark:bg-[#1b232b] dark:ring-white/15"
+          className="absolute inset-x-0 top-full z-10 mt-1 slim-scroll max-h-72 overflow-y-auto rounded-xl bg-paper p-1 shadow-lg ring-1 ring-black/10 dark:bg-[#1b232b] dark:ring-white/15"
         >
           {options.length === 0 && <li className="px-3 py-2 text-sm text-stone-500">No birds match “{query}”.</li>}
           {options.map((art, i) => (

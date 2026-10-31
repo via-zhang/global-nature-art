@@ -165,7 +165,7 @@ export default function App() {
             {listOpen && (
               <ul
                 id="artwork-list"
-                className="min-h-0 flex-1 overflow-y-auto border-t border-stone-200 p-2 dark:border-white/10"
+                className="slim-scroll min-h-0 flex-1 overflow-y-auto border-t border-stone-200 p-2 dark:border-white/10"
               >
                 {artworks.map((art) => (
                   <li key={art.id}>
